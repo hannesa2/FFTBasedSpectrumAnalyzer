@@ -1,5 +1,6 @@
 package spectrumanalyzer;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -7,9 +8,9 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Display;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -38,11 +39,14 @@ public class SoundRecordAndAnalysisActivity extends Activity implements OnClickL
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Display display = getWindowManager().getDefaultDisplay();
-		width = display.getWidth();
-		height = display.getHeight();
+		Point size = new Point();
+		getWindowManager().getDefaultDisplay().getSize(size);
+
+		width = size.x;
+		height = size.y;
 	}
 
+	@SuppressLint("SetTextI18n")
 	public void onClick(View v) {
 		if (recordTask.isStarted()) {
 			startStopButton.setText("Start");
@@ -55,6 +59,7 @@ public class SoundRecordAndAnalysisActivity extends Activity implements OnClickL
 		}
 	}
 
+	@SuppressLint("SetTextI18n")
 	@Override
 	public void onStart() {
 		super.onStart();
@@ -98,6 +103,7 @@ public class SoundRecordAndAnalysisActivity extends Activity implements OnClickL
 		recordTask = new RecordTask(canvasDisplaySpectrum, paintSpectrumDisplay, imageViewDisplaySpectrum, width);
 	}
 
+	@SuppressLint("SetTextI18n")
 	@Override
 	public void onBackPressed() {
 		try {
