@@ -98,7 +98,7 @@ public class RealDoubleFFT_Odd_Odd extends RealDoubleFFT_Even_Odd {
 	}
 
 /*
-	 void sinqi(int n, double wtable[])
+     void sinqi(int n, double wtable[])
      {
           cosqi(n, wtable);
      }
